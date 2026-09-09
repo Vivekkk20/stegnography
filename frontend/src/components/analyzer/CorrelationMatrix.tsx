@@ -20,10 +20,10 @@ export const CorrelationMatrix: React.FC<CorrelationMatrixProps> = ({ correlatio
   const lsb = correlation.lsb_plane_correlation;
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/80 p-5 backdrop-blur">
-      <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+    <div className="rounded-2xl border border-emerald-950/60 bg-[#07120b]/85 p-5 backdrop-blur shadow-lg">
+      <div className="flex items-center justify-between border-b border-emerald-950/60 pb-3">
         <div className="flex items-center gap-2">
-          <GitCompare className="h-4 w-4 text-cyan-400" />
+          <GitCompare className="h-4 w-4 text-emerald-400" />
           <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">
             Inter-Channel Pearson Correlation
           </h3>
@@ -37,18 +37,18 @@ export const CorrelationMatrix: React.FC<CorrelationMatrixProps> = ({ correlatio
 
       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Full Channels */}
-        <div className="rounded-lg bg-slate-950 p-4 border border-slate-800/80">
+        <div className="rounded-xl bg-[#030a05]/90 p-4 border border-emerald-950/40">
           <h4 className="text-xs font-semibold uppercase text-slate-400 mb-3">
             Full Channel Correlation (r)
           </h4>
           <div className="space-y-2.5 font-mono text-xs">
-            <div className="flex justify-between items-center py-1 border-b border-slate-800/60">
+            <div className="flex justify-between items-center py-1 border-b border-emerald-950/40">
               <span className="text-slate-400">Red ↔ Green</span>
               <span className={`font-bold ${getCorrelationColor(c.r_vs_g)}`}>
                 {c.r_vs_g.toFixed(4)}
               </span>
             </div>
-            <div className="flex justify-between items-center py-1 border-b border-slate-800/60">
+            <div className="flex justify-between items-center py-1 border-b border-emerald-950/40">
               <span className="text-slate-400">Red ↔ Blue</span>
               <span className={`font-bold ${getCorrelationColor(c.r_vs_b)}`}>
                 {c.r_vs_b.toFixed(4)}
@@ -64,18 +64,18 @@ export const CorrelationMatrix: React.FC<CorrelationMatrixProps> = ({ correlatio
         </div>
 
         {/* LSB Planes */}
-        <div className="rounded-lg bg-slate-950 p-4 border border-slate-800/80">
+        <div className="rounded-xl bg-[#030a05]/90 p-4 border border-emerald-950/40">
           <h4 className="text-xs font-semibold uppercase text-slate-400 mb-3">
             LSB Bit-Plane Correlation (r)
           </h4>
           <div className="space-y-2.5 font-mono text-xs">
-            <div className="flex justify-between items-center py-1 border-b border-slate-800/60">
+            <div className="flex justify-between items-center py-1 border-b border-emerald-950/40">
               <span className="text-slate-400">LSB Red ↔ Green</span>
               <span className={`font-bold ${getCorrelationColor(lsb.r_vs_g, true)}`}>
                 {lsb.r_vs_g.toFixed(4)}
               </span>
             </div>
-            <div className="flex justify-between items-center py-1 border-b border-slate-800/60">
+            <div className="flex justify-between items-center py-1 border-b border-emerald-950/40">
               <span className="text-slate-400">LSB Red ↔ Blue</span>
               <span className={`font-bold ${getCorrelationColor(lsb.r_vs_b, true)}`}>
                 {lsb.r_vs_b.toFixed(4)}
@@ -91,7 +91,7 @@ export const CorrelationMatrix: React.FC<CorrelationMatrixProps> = ({ correlatio
         </div>
       </div>
 
-      <p className="mt-3 text-xs leading-relaxed text-slate-400 bg-slate-950 p-2.5 rounded border border-slate-800/80">
+      <p className="mt-3 text-xs leading-relaxed text-slate-400 bg-[#030a05]/90 p-2.5 rounded-xl border border-emerald-950/40">
         {correlation.evaluation}
       </p>
     </div>

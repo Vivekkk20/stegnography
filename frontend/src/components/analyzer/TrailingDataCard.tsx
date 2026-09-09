@@ -73,13 +73,13 @@ export const TrailingDataCard: React.FC<TrailingDataCardProps> = ({ trailing }) 
             <span>Payload SHA-256</span>
             <button
               onClick={() => copyHash(trailing.sha256)}
-              className="text-cyan-400 hover:text-cyan-300 flex items-center gap-1"
+              className="text-emerald-400 hover:text-emerald-300 flex items-center gap-1"
             >
               {copied ? <Check className="h-2.5 w-2.5 text-emerald-400" /> : <Copy className="h-2.5 w-2.5" />}
               {copied ? 'Copied' : 'Copy'}
             </button>
           </div>
-          <p className="font-mono text-[10px] text-cyan-300 truncate mt-0.5">
+          <p className="font-mono text-[10px] text-emerald-300 truncate mt-0.5">
             {trailing.sha256}
           </p>
         </div>

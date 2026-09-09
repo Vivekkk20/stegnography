@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
-import { UploadCloud, X, AlertCircle } from 'lucide-react';
+import { UploadCloud, X, AlertCircle, ShieldCheck } from 'lucide-react';
+
 
 interface FileUploadProps {
   onFileSelect: (file: File | null) => void;
@@ -61,21 +62,27 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 
   return (
     <div className="w-full">
-      <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
-        {label}
-      </label>
+      <div className="flex items-center justify-between mb-2">
+        <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 font-mono">
+          {label}
+        </label>
+        <span className="text-[11px] text-slate-500 font-mono">PNG / BMP</span>
+      </div>
 
       <div
         onClick={() => inputRef.current?.click()}
-        onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
+        onDragOver={(e) => {
+          e.preventDefault();
+          setDragOver(true);
+        }}
         onDragLeave={() => setDragOver(false)}
         onDrop={handleDrop}
-        className={`group relative flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed p-6 text-center transition-all duration-200 ${
+        className={`group relative flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed p-6 sm:p-8 text-center transition-all duration-300 ${
           dragOver
-            ? 'border-cyan-400 bg-cyan-950/30'
+            ? 'border-emerald-400 bg-emerald-950/40 shadow-xl glow-emerald scale-[1.01]'
             : selectedFile
-            ? 'border-slate-700 bg-slate-900/80 hover:border-cyan-500/50'
-            : 'border-slate-800 bg-slate-950/60 hover:border-slate-700 hover:bg-slate-900/40'
+            ? 'border-emerald-500/40 bg-[#07120b]/90 shadow-lg'
+            : 'border-emerald-950/80 bg-[#050b07]/70 hover:border-emerald-800/60 hover:bg-[#07140c]/50 hover:shadow-md'
         }`}
       >
         <input
@@ -88,53 +95,68 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 
         {selectedFile && previewUrl ? (
           <div className="flex w-full items-center justify-between gap-4">
-            <div className="flex items-center gap-4 overflow-hidden">
-              <div className="h-16 w-16 shrink-0 overflow-hidden rounded-lg border border-slate-700 bg-slate-950">
+            <div className="flex items-center gap-4 overflow-hidden min-w-0">
+              <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border border-emerald-500/30 bg-slate-950 shadow-md">
                 <img
                   src={previewUrl}
                   alt="Preview"
                   className="h-full w-full object-cover"
                 />
+                <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-xl" />
               </div>
-              <div className="text-left overflow-hidden">
-                <p className="truncate text-sm font-semibold text-slate-200">
-                  {selectedFile.name}
+
+              <div className="text-left overflow-hidden min-w-0">
+                <div className="flex items-center gap-2">
+                  <p className="truncate text-sm font-bold text-white">
+                    {selectedFile.name}
+                  </p>
+                </div>
+                <p className="text-xs text-slate-400 font-mono mt-0.5">
+                  {(selectedFile.size / 1024).toFixed(1)} KB • {selectedFile.type || 'image/png'}
                 </p>
-                <p className="text-xs text-slate-400 font-mono">
-                  {(selectedFile.size / 1024).toFixed(1)} KB • {selectedFile.type || 'image'}
-                </p>
-                <span className="inline-block mt-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-400">
-                  ✓ Verified Lossless Image
-                </span>
+                <div className="flex items-center gap-1.5 mt-2">
+                  <span className="inline-flex items-center gap-1 rounded-md bg-emerald-500/10 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider text-emerald-400 border border-emerald-500/30">
+                    <ShieldCheck className="h-3 w-3" /> Lossless Carrier Verified
+                  </span>
+                </div>
               </div>
             </div>
 
             <button
               onClick={clearFile}
-              className="rounded-lg p-2 text-slate-400 hover:bg-slate-800 hover:text-rose-400 transition-colors"
-              title="Remove file"
+              className="shrink-0 rounded-xl border border-slate-800 bg-slate-900/80 p-2.5 text-slate-400 hover:bg-rose-950/40 hover:text-rose-400 hover:border-rose-500/30 transition-all shadow-sm"
+              title="Remove selected image"
+              aria-label="Remove image"
             >
               <X className="h-5 w-5" />
             </button>
           </div>
         ) : (
-          <div className="flex flex-col items-center gap-2">
-            <div className="rounded-full bg-slate-900 p-3 text-cyan-400 group-hover:scale-110 transition-transform">
-              <UploadCloud className="h-6 w-6" />
+          <div className="flex flex-col items-center gap-3">
+            <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-tr from-emerald-950 to-slate-900 border border-emerald-500/30 text-emerald-400 group-hover:scale-110 group-hover:border-emerald-400 transition-all duration-300 shadow-md">
+              <UploadCloud className="h-7 w-7" />
+              <span className="absolute -bottom-1 -right-1 flex h-3 w-3">
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+              </span>
             </div>
+
             <div>
-              <p className="text-sm font-medium text-slate-200">
-                Drop your image here, or <span className="text-cyan-400 underline">browse</span>
+              <p className="text-sm font-semibold text-slate-200">
+                Drag & drop cover image here, or{' '}
+                <span className="text-emerald-400 underline decoration-emerald-400/50 underline-offset-4 hover:decoration-emerald-400">
+                  browse files
+                </span>
               </p>
-              <p className="mt-1 text-xs text-slate-500">{helperText}</p>
+              <p className="mt-1.5 text-xs text-slate-500 font-mono">{helperText}</p>
             </div>
           </div>
         )}
       </div>
 
+
       {error && (
-        <div className="mt-2 flex items-center gap-1.5 text-xs text-rose-400">
-          <AlertCircle className="h-4 w-4" />
+        <div className="mt-2.5 flex items-center gap-2 rounded-xl border border-rose-500/30 bg-rose-950/30 p-3 text-xs text-rose-300">
+          <AlertCircle className="h-4 w-4 shrink-0 text-rose-400" />
           <span>{error}</span>
         </div>
       )}

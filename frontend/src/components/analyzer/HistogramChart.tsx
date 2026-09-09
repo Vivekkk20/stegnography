@@ -128,10 +128,10 @@ export const HistogramChart: React.FC<HistogramChartProps> = ({ histogram }) => 
   };
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/80 p-5 backdrop-blur">
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+    <div className="rounded-2xl border border-emerald-950/60 bg-[#07120b]/85 p-5 backdrop-blur shadow-lg">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-emerald-950/60 pb-3">
         <div className="flex items-center gap-2">
-          <BarChart3 className="h-4 w-4 text-cyan-400" />
+          <BarChart3 className="h-4 w-4 text-emerald-400" />
           <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">
             RGB Channel Histograms (256 Bins)
           </h3>
@@ -145,7 +145,7 @@ export const HistogramChart: React.FC<HistogramChartProps> = ({ histogram }) => 
               onClick={() => setActiveChannel(ch)}
               className={`px-2.5 py-1 rounded capitalize font-medium transition-colors ${
                 activeChannel === ch
-                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40'
+                  ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
                   : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'
               }`}
             >
@@ -159,20 +159,20 @@ export const HistogramChart: React.FC<HistogramChartProps> = ({ histogram }) => 
         <Line data={data} options={options} />
       </div>
 
-      <div className="mt-4 grid grid-cols-3 gap-2 border-t border-slate-800/80 pt-3">
-        <div className="text-center bg-slate-950 p-2 rounded">
+      <div className="mt-4 grid grid-cols-3 gap-2 border-t border-emerald-950/60 pt-3">
+        <div className="text-center bg-[#030a05]/90 p-2.5 rounded-xl border border-emerald-950/40">
           <span className="text-[10px] text-slate-500 uppercase">Red PoV Delta</span>
           <p className="font-mono text-xs text-slate-200">
             {histogram.pov_pairing_delta.red?.toFixed(4) ?? 'N/A'}
           </p>
         </div>
-        <div className="text-center bg-slate-950 p-2 rounded">
+        <div className="text-center bg-[#030a05]/90 p-2.5 rounded-xl border border-emerald-950/40">
           <span className="text-[10px] text-slate-500 uppercase">Green PoV Delta</span>
           <p className="font-mono text-xs text-slate-200">
             {histogram.pov_pairing_delta.green?.toFixed(4) ?? 'N/A'}
           </p>
         </div>
-        <div className="text-center bg-slate-950 p-2 rounded">
+        <div className="text-center bg-[#030a05]/90 p-2.5 rounded-xl border border-emerald-950/40">
           <span className="text-[10px] text-slate-500 uppercase">Blue PoV Delta</span>
           <p className="font-mono text-xs text-slate-200">
             {histogram.pov_pairing_delta.blue?.toFixed(4) ?? 'N/A'}

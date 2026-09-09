@@ -17,10 +17,10 @@ export const MetadataTable: React.FC<MetadataTableProps> = ({ metadata }) => {
     metadata.suspicious_tags.length > 0;
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/80 p-5 backdrop-blur">
-      <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+    <div className="rounded-2xl border border-emerald-950/60 bg-[#07120b]/85 p-5 backdrop-blur shadow-lg">
+      <div className="flex items-center justify-between border-b border-emerald-950/60 pb-3">
         <div className="flex items-center gap-2">
-          <Tag className="h-4 w-4 text-cyan-400" />
+          <Tag className="h-4 w-4 text-emerald-400" />
           <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">
             Metadata & Header Chunks Inspection
           </h3>
@@ -33,7 +33,7 @@ export const MetadataTable: React.FC<MetadataTableProps> = ({ metadata }) => {
       </div>
 
       {!hasMetadata ? (
-        <div className="mt-4 p-4 text-center text-xs text-slate-500 bg-slate-950 rounded border border-slate-800/80">
+        <div className="mt-4 p-4 text-center text-xs text-slate-500 bg-[#030a05]/90 rounded-xl border border-emerald-950/40">
           No EXIF or extended text metadata chunks present in this image header.
         </div>
       ) : (
@@ -58,8 +58,8 @@ export const MetadataTable: React.FC<MetadataTableProps> = ({ metadata }) => {
               </h4>
               <div className="space-y-1.5 font-mono text-xs">
                 {metadata.png_text_chunks.map((chunk, i) => (
-                  <div key={i} className="flex justify-between items-center bg-slate-950 p-2 rounded border border-slate-800">
-                    <span className="text-cyan-400 font-bold">{chunk.type} ({chunk.length} bytes)</span>
+                  <div key={i} className="flex justify-between items-center bg-[#030a05]/90 p-2 rounded-xl border border-emerald-950/40">
+                    <span className="text-emerald-400 font-bold">{chunk.type} ({chunk.length} bytes)</span>
                     <span className="text-slate-300 truncate max-w-xs">{chunk.preview}</span>
                   </div>
                 ))}

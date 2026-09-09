@@ -146,12 +146,18 @@ stegnography/
 - **Node.js 18+** & **npm** (tested on Node v24)
 - Windows / macOS / Linux
 
-### Automated Windows Launcher
-For Windows users, launch both services with one click:
+### Automated One-Click Launcher (Windows)
+Double-click `start.bat` in the root folder, or run:
 ```cmd
-scripts\run_dev.bat
+start.bat
 ```
-Or run the complete verification test suite:
+Or via PowerShell:
+```powershell
+.\start.ps1
+```
+*(This automatically verifies environments, boots FastAPI backend on port 8000, Vite frontend on port 5173, and opens your browser automatically!)*
+
+To run the complete verification test suite:
 ```cmd
 scripts\run_tests.bat
 ```
@@ -226,8 +232,13 @@ Generated artifacts in `test_data/`:
 
 ## In-Depth Documentation
 
-For complete technical specifications, review the dedicated manuals in `docs/`:
+For complete technical specifications, review the dedicated manuals:
+- **[Academic Project Report](PROJECT_REPORT.md)** — Formal academic thesis/project report formatted according to university examination guidelines.
+- **[Master Technical Reference](DOCUMENTATION.md)** — Comprehensive end-to-end reference manual for the entire project.
+- **[Documentation Hub & Index](docs/README.md)** — Complete index of all technical guides and recommended reading paths.
 - **[System Architecture](docs/architecture.md)** — Modular design, data flows, and security boundaries.
+- **[Frontend Architecture & Matrix Theme](docs/frontend.md)** — React 19 SPA, Matrix Emerald styling, canvas microscope, and educational mode.
+- **[Developer & Operations Guide](docs/developer-guide.md)** — Setup, automated scripts, testing workflows, and production deployment.
 - **[Steganography Engine](docs/steganography.md)** — Spatial LSB theory, bit slicing, 64-byte container format, and capacity mathematics.
 - **[Cryptographic Architecture](docs/encryption.md)** — AES-256-GCM, PBKDF2-HMAC-SHA256, salt/nonce randomness, and tamper detection.
 - **[Steganalysis & Risk Engine](docs/analyzer.md)** — Shannon entropy, Westfeld-Pfitzmann Chi-Square test, histograms, and risk scoring.
@@ -247,3 +258,7 @@ StegoVault is developed strictly for educational, defensive, and digital-forensi
 ## License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+
+
+

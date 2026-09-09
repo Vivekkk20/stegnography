@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldAlert, AlertTriangle, Info, AlertOctagon, CheckCircle } from 'lucide-react';
+import { ShieldAlert, AlertTriangle, Info, AlertOctagon, CheckCircle2 } from 'lucide-react';
 import type { TechnicalFinding } from '../../types';
 
 interface FindingsListProps {
@@ -11,12 +11,12 @@ export const FindingsList: React.FC<FindingsListProps> = ({ findings }) => {
     switch (sev) {
       case 'CRITICAL':
         return {
-          bg: 'bg-rose-500/15 text-rose-400 border-rose-500/30',
+          bg: 'bg-rose-500/15 text-rose-400 border-rose-500/40 glow-rose',
           icon: <AlertOctagon className="h-3.5 w-3.5 text-rose-400" />,
         };
       case 'HIGH':
         return {
-          bg: 'bg-orange-500/15 text-orange-400 border-orange-500/30',
+          bg: 'bg-orange-500/15 text-orange-400 border-orange-500/40 glow-amber',
           icon: <AlertTriangle className="h-3.5 w-3.5 text-orange-400" />,
         };
       case 'MEDIUM':
@@ -26,8 +26,8 @@ export const FindingsList: React.FC<FindingsListProps> = ({ findings }) => {
         };
       case 'LOW':
         return {
-          bg: 'bg-cyan-500/15 text-cyan-400 border-cyan-500/30',
-          icon: <Info className="h-3.5 w-3.5 text-cyan-400" />,
+          bg: 'bg-teal-500/15 text-teal-400 border-teal-500/30',
+          icon: <Info className="h-3.5 w-3.5 text-teal-400" />,
         };
       default:
         return {
@@ -38,52 +38,61 @@ export const FindingsList: React.FC<FindingsListProps> = ({ findings }) => {
   };
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/80 p-5 backdrop-blur">
-      <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-        <div className="flex items-center gap-2">
-          <ShieldAlert className="h-4 w-4 text-cyan-400" />
-          <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">
-            Forensic Technical Findings ({findings.length})
-          </h3>
+    <div className="rounded-2xl border border-emerald-950/60 bg-[#07120b]/85 p-5 sm:p-6 backdrop-blur-xl shadow-xl space-y-4">
+      <div className="flex items-center justify-between border-b border-emerald-950/60 pb-3">
+        <div className="flex items-center gap-2.5">
+          <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <ShieldAlert className="h-4 w-4" />
+          </div>
+          <div>
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider font-mono">
+              Forensic Technical Findings ({findings.length})
+            </h3>
+            <p className="text-[11px] text-slate-400">
+              Heuristic anomaly detection across Shannon entropy, PoV, and container checks
+            </p>
+          </div>
         </div>
       </div>
 
       {findings.length === 0 ? (
-        <div className="mt-4 flex items-center gap-3 rounded-lg bg-slate-950 p-4 border border-slate-800 text-xs text-slate-400">
-          <CheckCircle className="h-5 w-5 text-emerald-400" />
-          <span>No anomalous technical findings were identified during the forensic analysis.</span>
+        <div className="flex items-center gap-3 rounded-2xl bg-slate-950/80 p-5 border border-slate-800 text-xs text-slate-300">
+          <CheckCircle2 className="h-5 w-5 text-emerald-400 shrink-0" />
+          <span>
+            No anomalous statistical patterns or trailing structures detected. The image exhibits natural sensor noise characteristics.
+          </span>
         </div>
       ) : (
-        <div className="mt-4 space-y-3">
+        <div className="space-y-3">
           {findings.map((finding, idx) => {
             const badge = getSeverityBadge(finding.severity);
             return (
               <div
                 key={idx}
-                className="rounded-xl border border-slate-800/90 bg-slate-950 p-4 transition-all hover:border-slate-700"
+                className="rounded-2xl border border-emerald-950/40 bg-[#030a05]/90 p-4 sm:p-5 transition-all hover:border-emerald-500/30 shadow-sm space-y-2.5"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2.5">
                     <span
-                      className={`inline-flex items-center gap-1 rounded border px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${badge.bg}`}
+                      className={`inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1 text-[10px] font-bold uppercase font-mono tracking-wider ${badge.bg}`}
                     >
                       {badge.icon}
                       {finding.severity}
                     </span>
-                    <h4 className="text-sm font-bold text-slate-100">{finding.title}</h4>
+                    <h4 className="text-sm font-bold text-white">{finding.title}</h4>
                   </div>
-                  <span className="text-[10px] font-mono uppercase text-slate-500 bg-slate-900 px-2 py-0.5 rounded">
+                  <span className="text-[10px] font-mono uppercase text-slate-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-800">
                     {finding.category}
                   </span>
                 </div>
 
-                <p className="mt-2 text-xs leading-relaxed text-slate-300">
+                <p className="text-xs leading-relaxed text-slate-300">
                   {finding.description}
                 </p>
 
                 {finding.evidence && (
-                  <div className="mt-3 rounded bg-slate-900/90 px-3 py-2 border border-slate-800/80 font-mono text-[11px] text-cyan-300 break-all">
-                    <span className="text-slate-500 font-sans font-semibold text-[10px] uppercase block mb-0.5">
+                  <div className="rounded-xl bg-[#020503] px-3.5 py-2.5 border border-emerald-950/50 font-mono text-xs text-emerald-300 break-all shadow-inner">
+                    <span className="text-slate-500 font-sans font-semibold text-[10px] uppercase block mb-1">
                       Technical Evidence:
                     </span>
                     {finding.evidence}

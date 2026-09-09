@@ -8,16 +8,16 @@ interface LsbAnalysisCardProps {
 
 export const LsbAnalysisCard: React.FC<LsbAnalysisCardProps> = ({ lsb }) => {
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/80 p-5 backdrop-blur">
-      <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+    <div className="rounded-2xl border border-emerald-950/60 bg-[#07120b]/85 p-5 backdrop-blur shadow-lg">
+      <div className="flex items-center justify-between border-b border-emerald-950/60 pb-3">
         <div className="flex items-center gap-2">
-          <Binary className="h-4 w-4 text-cyan-400" />
+          <Binary className="h-4 w-4 text-emerald-400" />
           <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">
             LSB Bit-Plane & Chi-Square (χ²) Analysis
           </h3>
         </div>
-        <span className="text-xs text-slate-400">
-          Suspicious Channels: <span className="font-bold text-cyan-400">{lsb.suspicious_channels_count}</span>
+        <span className="text-xs text-slate-400 font-mono">
+          Suspicious Channels: <span className="font-bold text-emerald-400">{lsb.suspicious_channels_count}</span>
         </span>
       </div>
 
@@ -77,7 +77,7 @@ export const LsbAnalysisCard: React.FC<LsbAnalysisCardProps> = ({ lsb }) => {
         </table>
       </div>
 
-      <div className="mt-4 rounded-lg bg-slate-950 p-3 text-xs text-slate-400 border border-slate-800/80 leading-relaxed">
+      <div className="mt-4 rounded-xl bg-[#030a05]/90 p-3 text-xs text-slate-400 border border-emerald-950/40 leading-relaxed">
         <span className="font-semibold text-slate-300">Forensic Summary: </span>
         {lsb.summary}
       </div>

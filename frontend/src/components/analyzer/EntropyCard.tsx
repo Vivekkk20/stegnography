@@ -15,7 +15,7 @@ export const EntropyCard: React.FC<EntropyCardProps> = ({ entropy }) => {
         <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-800">
           <div
             className={`h-full transition-all duration-500 ${
-              isSuspicious ? 'bg-amber-400' : 'bg-cyan-500'
+              isSuspicious ? 'bg-amber-400' : 'bg-emerald-500'
             }`}
             style={{ width: `${pct}%` }}
           />
@@ -28,10 +28,10 @@ export const EntropyCard: React.FC<EntropyCardProps> = ({ entropy }) => {
   };
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/80 p-5 backdrop-blur">
-      <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+    <div className="rounded-2xl border border-emerald-950/60 bg-[#07120b]/85 p-5 backdrop-blur shadow-lg">
+      <div className="flex items-center justify-between border-b border-emerald-950/60 pb-3">
         <div className="flex items-center gap-2">
-          <Activity className="h-4 w-4 text-cyan-400" />
+          <Activity className="h-4 w-4 text-emerald-400" />
           <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">
             Shannon Entropy Analysis
           </h3>
@@ -68,7 +68,7 @@ export const EntropyCard: React.FC<EntropyCardProps> = ({ entropy }) => {
               </div>
               {getEntropyBar(entropy.channels_entropy.blue || 0, 8.0)}
             </div>
-            <div className="pt-2 border-t border-slate-800">
+            <div className="pt-2 border-t border-emerald-950/60">
               <div className="flex justify-between text-xs text-slate-400 mb-1">
                 <span>Raw File Entropy</span>
               </div>
@@ -103,7 +103,7 @@ export const EntropyCard: React.FC<EntropyCardProps> = ({ entropy }) => {
             </div>
           </div>
 
-          <p className="mt-3 text-xs leading-relaxed text-slate-400 bg-slate-950 p-2.5 rounded border border-slate-800/80">
+          <p className="mt-3 text-xs leading-relaxed text-slate-400 bg-[#030a05]/90 p-2.5 rounded-xl border border-emerald-950/40">
             {entropy.evaluation}
           </p>
         </div>
